@@ -30,3 +30,35 @@ Total: $295.6
 
 - [Database document](database.md)
 - [API Coontract](api-contract.md)
+
+## How to run
+### 1. Migrate database
+- Read [Database document](database.md)
+
+### 2. Using go run
+- Set `.env` file like `.env-example`
+- Run command:
+```
+go run main.go -loadDotEnv=true
+```
+
+### 3. Build docker file
+-  Build docker image
+```
+docker build -t "$DOCKER_NAME" .
+```
+
+- Delete existing container
+```
+docker container rm "$CONTAINER_NAME"
+```
+
+- Create container<br>Don't use localhost for mysql host
+```
+docker container create --name "$CONTAINER_NAME" -e HTTP_PORT=$HTTP_PORT -e MYSQL_HOST="$MYSQL_HOST" -e MYSQL_USERNAME="$MYSQL_USERNAME" -e MYSQL_DB_NAME="$MYSQL_DB_NAME" -e MYSQL_PASSWORD="$MYSQL_PASSWORD" -p $HTTP_PORT:$HTTP_PORT $DOCKER_NAME
+```
+
+- Start container
+```
+docker container start "$CONTAINER_NAME"
+```

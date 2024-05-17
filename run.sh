@@ -51,7 +51,7 @@ fi
 echo "Delete existing container"
 docker container rm "$CONTAINER_NAME"
 # create container
-echo "Createing container"
+echo "Creating container"
 docker container create --name "$CONTAINER_NAME" -e HTTP_PORT=$HTTP_PORT -e MYSQL_HOST="$MYSQL_HOST" -e MYSQL_USERNAME="$MYSQL_USERNAME" -e MYSQL_DB_NAME="$MYSQL_DB_NAME" -e MYSQL_PASSWORD="$MYSQL_PASSWORD" -p $HTTP_PORT:$HTTP_PORT $DOCKER_NAME
 
 # start container
